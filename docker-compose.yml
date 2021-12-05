@@ -1,0 +1,48 @@
+# version: "3.8"
+# services:
+#   csci2690:
+#     image: postgis/postgis
+#     restart: always
+#     environment:
+#       - DATABASE_HOST=127.0.0.1
+#       - POSTGRES_USER=simran
+#       - POSTGRES_PASSWORD=test
+#       - POSTGRES_DB=csci2690
+#     ports:
+#       - "5432:5432"
+#     container_name: csci2690
+#   csci2690_pgadmin:
+#     image: dpage/pgadmin4:6
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: "sm237512@dal.ca"
+#       PGADMIN_DEFAULT_PASSWORD: "helloworld"
+#     container_name: csci2690_pgadmin
+#     ports:
+#       - "5432:80"
+#     depends_on:
+#       - csci2690
+
+version: "3.8"
+services:
+  psql:
+    image: postgis/postgis
+    restart: always
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=csci2690
+    ports:
+      - "4033:4033"
+    container_name: csci2690
+
+  pgadmin:
+    image: dpage/pgadmin4:6
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "pr284996@dal.ca"
+      PGADMIN_DEFAULT_PASSWORD: "helloworld"
+    container_name: csci2690_pgadmin
+    ports:
+      - "4033:80"
+    depends_on:
+      - psql
